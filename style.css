@@ -9,10 +9,6 @@ body{
     overflow: hidden;
 }
 
-/* .container {
-    padding: 10%;
-    margin: auto;
-} */
 .fortuneTeller{
     display: flex;
     flex-direction: column;
@@ -108,14 +104,14 @@ body{
 
 @keyframes changingBackgroundColor {
     0% {
-        background-color: #000000;
+        background-color: rgb(141, 0, 0);
     }
 
     50% {
-        background-color: rgb(110, 0, 0);
+        background-color: black;
     }
 
     100% {
-        background-color: black;
+        background-color: rgb(141, 0, 0);
     }
 }
