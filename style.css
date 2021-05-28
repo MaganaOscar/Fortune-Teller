@@ -55,3 +55,17 @@ body{
     color: white;
     z-index: 98;
 }
+
+.fortunes {
+    margin: 0 auto;
+    margin-top: 20%;
+    height: 13em;
+    width: 18.38em;
+    background: url("assets/Trogmod Fortune.jpg");
+    background-size: cover;
+    color: white;
+}
+
+.fortunes p{
+    padding-top: 1em;
+}

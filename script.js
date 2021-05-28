@@ -5,7 +5,10 @@ let yMax = window.innerHeight
 || document.documentElement.clientHeight
 || document.body.clientHeight;
 
+let fortuneTeller = null;
+
 let questions = [];
+let toldFortunes = [];
 let fortune = [
 	"Fortune favors the bold",
 	"But what if you just didn't?",
@@ -103,38 +106,52 @@ let reachedXMax = false;
 let reachedYMax = false;
 
 function moveFortune (){
-    let elem = document.getElementById("fortuneTeller")
-    if (xPos >= xMax) {
-        reachedXMax = true;
-    } else if (xPos <= 0) {
-        reachedXMax = false;
+    let elem = document.getElementById("fortuneTeller");
+    if (elem) {
+        if (xPos >= xMax) {
+            reachedXMax = true;
+        } else if (xPos <= 0) {
+            reachedXMax = false;
+        }
+        
+        if(yPos >= yMax) {
+            reachedYMax = true;
+        } else if (yPos <= 0) {
+            reachedYMax = false;
+        }
+        
+        if(!reachedYMax) {
+            yPos += 1;
+            elem.style.top = yPos + "px";
+        } else if (reachedYMax) {
+            yPos -= 1;
+            elem.style.top = yPos + "px";
+        }
+        if(!reachedXMax) {
+            xPos += 1;
+            elem.style.left = xPos + "px";
+        } else if (reachedYMax) {
+            xPos -= 1;
+            elem.style.left = xPos + "px";
+        }
     }
-
-    if(yPos >= yMax) {
-        reachedYMax = true;
-    } else if (yPos <= 0) {
-        reachedYMax = false;
-    }
-
-    if(!reachedYMax) {
-        elem.style.top = yPos + "px";
-        yPos++;
-    } else if (reachedYMax) {
-        --yPos;
-        elem.style.top = yPos + "px";
-    }
-    if(!reachedXMax) {
-        elem.style.left = xPos + "px";
-        xPos++;
-    } else if (reachedYMax) {
-        --xPos;
-        elem.style.left = xPos + "px";
-    }
+        // error when reachedxMax = true reachedYMax = false
 }
-window.addEventListener("resize", resizeWindow);
-
-function resizeWindow() {
-    xMax = window.innerWidth || 
+    
+    function askFortune() {
+        fortuneTeller = document.getElementById("fortuneTeller");
+        questions.push(document.getElementById("question").value)
+        document.getElementById("fortuneTeller").remove();
+        
+        document.getElementById("fortuneTold").innerHTML = 
+        "<div class='fortunes'><p>" + fortune[Math.floor(Math.random()*fortune.length)] +
+        "</p></div>";
+    }
+    
+    window.addEventListener("resize", resizeWindow);
+    
+    function resizeWindow() {
+        xMax = window.innerWidth || 
         document.documentElement.clientWidth || 
         document.body.clientWidth;
     yMax = window.innerHeight ||
@@ -144,4 +161,4 @@ function resizeWindow() {
     yMax -= 420;
 }
 
-setInterval(moveFortune, 5);
+setInterval(moveFortune, 10);
