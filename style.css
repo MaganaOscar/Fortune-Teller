@@ -1,0 +1,57 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    border-style: none;
+}
+body{
+    background-color: black;
+}
+
+/* .container {
+    padding: 10%;
+    margin: auto;
+} */
+.fortuneTeller{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#fortuneTeller {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+#fortune {
+    width: 200px;
+    border-radius: 25%;
+    box-shadow: 0px 0px 1000px 25px crimson;
+    /* border: 1px white solid; */
+    animation: spinningImg .6s linear infinite;
+    background-color: red;
+	}
+
+@keyframes spinningImg {
+		0% {
+			transform: rotate(0deg);
+		}
+		100% {
+			transform: rotate(360deg);
+		}
+}
+#question {
+    padding: 0.5em;
+    margin-bottom: 0.5em;
+    z-index: 99;
+}
+
+#question:focus {
+    outline: none;
+}
+
+#askBtn {
+    background-color: rgb(98, 35, 5);
+    padding: 0.5em;
+    color: white;
+    z-index: 98;
+}
