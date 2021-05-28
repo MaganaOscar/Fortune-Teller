@@ -6,6 +6,7 @@
 }
 body{
     background-color: black;
+    overflow: hidden;
 }
 
 /* .container {
@@ -16,6 +17,11 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+.askHere {
+    color: white;
+    margin-top: 1em;
+    margin-bottom: 5px;
 }
 #fortuneTeller {
     position: absolute;
@@ -59,13 +65,57 @@ body{
 .fortunes {
     margin: 0 auto;
     margin-top: 20%;
-    height: 13em;
-    width: 18.38em;
+    height: 15em;
+    width: 21.21em;
     background: url("assets/Trogmod Fortune.jpg");
     background-size: cover;
     color: white;
 }
 
 .fortunes p{
-    padding-top: 1em;
+    padding-top: 2.75em;
+    padding-left: 9.5em;;
+    width:7em;
+    height: 10em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.fortuneBtns {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.fortunesP {
+    color: white;
+}
+
+#seeFortunesBtn, #againBtn{
+    animation: changingBackgroundColor 3s infinite ease-in-out;
+    color: white;
+    padding: 0.5em;
+}
+
+#seeFortunesBtn {
+    border-radius: 0% 30% 0% 0%;
+}
+
+#againBtn {
+    border-radius: 30% 0% 0% 0%;
+}
+
+@keyframes changingBackgroundColor {
+    0% {
+        background-color: #000000;
+    }
+
+    50% {
+        background-color: rgb(110, 0, 0);
+    }
+
+    100% {
+        background-color: black;
+    }
 }

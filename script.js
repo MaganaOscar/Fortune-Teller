@@ -6,6 +6,7 @@ let yMax = window.innerHeight
 || document.body.clientHeight;
 
 let fortuneTeller = null;
+let fortuneTold = null;
 
 let questions = [];
 let toldFortunes = [];
@@ -29,7 +30,6 @@ let fortune = [
     "Roses are red, violets are blue, my favorite angles are askew",
     "Roses are red, violets are blue, choo choo kachoo",
     "We all live in a yellow submarine, you just happen to be outside of it",
-    "Kachigga",
     "Sometimes inexperience is experience",
     "I am speed",
     "Good luck!",
@@ -96,7 +96,7 @@ let fortune = [
 
 
 
-xMax -= 280;
+xMax -= 275;
 yMax -= 420;
 
 let xPos = 1;
@@ -139,13 +139,45 @@ function moveFortune (){
 }
     
     function askFortune() {
-        fortuneTeller = document.getElementById("fortuneTeller");
-        questions.push(document.getElementById("question").value)
-        document.getElementById("fortuneTeller").remove();
+        var tempNode = document.getElementById("fortuneTeller");
+        fortuneTeller = tempNode.innerHTML;
+        questions.push(document.getElementById("question").value);
+        document.getElementById("fortuneTeller").innerHTML = "";
         
         document.getElementById("fortuneTold").innerHTML = 
-        "<div class='fortunes'><p>" + fortune[Math.floor(Math.random()*fortune.length)] +
-        "</p></div>";
+        "<div class='fortunes'><p id='destiny'>" + fortune[Math.floor(Math.random()*fortune.length)] +
+        "</p><div class='fortuneBtns'><button onclick='seeFortunes()' id='seeFortunesBtn'>See your past destinies</button><button onclick='askAgain()' id='againBtn'>Seek another destiny</button></div></div>";
+    }
+
+    function askAgain() {
+        toldFortunes.push(document.getElementById("destiny").innerText);
+        document.getElementById("fortuneTold").innerHTML = "";
+        document.getElementById("seeFortunes").innerHTML = "";
+        document.getElementById("fortuneTeller").innerHTML = fortuneTeller;
+    }
+
+    function seeFortunes() {
+        // console.log(toldFortunes, document.getElementById("seeFortunes").innerText);
+        // console.log(questions);
+        let hasBeenClicked = false;
+        if (document.getElementById("seeFortunes").innerText === "" && toldFortunes.length === 0){
+            toldFortunes.push(document.getElementById("destiny").innerText);
+            document.getElementById("seeFortunes").innerHTML = "<div class='allFortunes'><p class='fortunesP'>" + questions[0] + ": " +
+            toldFortunes[0] + "</p></div>";
+            console.log('here')
+        } else if (toldFortunes.length > 0) {
+            if (hasBeenClicked) {
+                document.getElementById("fortunes").innerHTML = "";
+                toldFortunes.push(document.getElementById("destiny").innerText);
+                let output = "<div class='allFortunes'>";
+                for (let i = toldFortunes.length; i > 0; i--) {
+                    output += "<p class='fortunesP'>" + questions[i] + ": " + toldFortunes[i] + "</p>";
+                }
+                output += "</div>";
+                document.getElementById("seeFortunes").innerHTML = output;
+            }
+            hasBeenClicked = true;
+        }
     }
     
     window.addEventListener("resize", resizeWindow);
@@ -161,4 +193,4 @@ function moveFortune (){
     yMax -= 420;
 }
 
-setInterval(moveFortune, 10);
+setInterval(moveFortune, 15);
